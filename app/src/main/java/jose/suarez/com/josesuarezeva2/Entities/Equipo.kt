@@ -16,6 +16,6 @@ import androidx.room.PrimaryKey
 data class Equipo (
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val nombre: String,
-    val estado: String,
+    val estado: EstadoEquipo,
     val laboratorioId: Int
 )

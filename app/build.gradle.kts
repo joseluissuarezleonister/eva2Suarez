@@ -8,6 +8,10 @@ android {
         version = release(36)
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "jose.suarez.com.josesuarezeva2"
         minSdk = 24
