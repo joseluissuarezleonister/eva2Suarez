@@ -51,7 +51,7 @@ class MainViewModel(private val repository: AuditRepository) : ViewModel() {
     }
 
     //crear
-    fun insertarEquipo(nombre: String, estado:String, labId: Int){
+    fun insertarEquipo(nombre: String, estado: jose.suarez.com.josesuarezeva2.Entities.EstadoEquipo, labId: Int){
         viewModelScope.launch(Dispatchers.IO){
             val nuevoEquipo = Equipo(nombre = nombre, estado = estado, laboratorioId = labId)
             repository.insertEquipo(nuevoEquipo)

@@ -117,7 +117,7 @@ class Equipos : AppCompatActivity() {
         spinnerEstado.adapter = spinnerAdapter
         
         if (esEditar) {
-            val position = opcionesEstado.indexOf(equipoAEditar?.estado)
+            val position = opcionesEstado.indexOf(equipoAEditar?.estado?.name)
             if (position >= 0) spinnerEstado.setSelection(position)
         }
         layout.addView(spinnerEstado)
@@ -129,11 +129,12 @@ class Equipos : AppCompatActivity() {
             val estadoSeleccionado = spinnerEstado.selectedItem.toString()
 
             if (nombre.isNotEmpty()) {
+                val estadoEnum = jose.suarez.com.josesuarezeva2.Entities.EstadoEquipo.valueOf(estadoSeleccionado)
                 if (esEditar) {
-                    val equipoEditado = equipoAEditar!!.copy(nombre = nombre, estado = estadoSeleccionado)
+                    val equipoEditado = equipoAEditar!!.copy(nombre = nombre, estado = estadoEnum)
                     viewModel.actualizarEquipo(equipoEditado)
                 } else {
-                    viewModel.insertarEquipo(nombre, estadoSeleccionado, labIdActual)
+                    viewModel.insertarEquipo(nombre, estadoEnum, labIdActual)
                 }
             } else {
                 Toast.makeText(this, "Debe ingresar el nombre", Toast.LENGTH_SHORT).show()

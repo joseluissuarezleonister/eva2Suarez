@@ -7,8 +7,10 @@ import androidx.room.RoomDatabase
 import jose.suarez.com.josesuarezeva2.Dao.TechAuditDao
 import jose.suarez.com.josesuarezeva2.Entities.Equipo
 import jose.suarez.com.josesuarezeva2.Entities.Laboratorio
+import androidx.room.TypeConverters
 
 @Database(entities = [Laboratorio::class, Equipo::class], version = 1)
+@TypeConverters(Converters::class)
 abstract class TechDatabase : RoomDatabase() {
     abstract fun techAuditDao(): TechAuditDao
 
