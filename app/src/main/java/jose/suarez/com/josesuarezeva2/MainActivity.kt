@@ -118,6 +118,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
         builder.setNegativeButton("Cancelar", null)
-        builder.show()
+        val dialog = builder.show()
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(android.graphics.Color.parseColor("#497df5"))
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(android.graphics.Color.parseColor("#497df5"))
     }
 }
