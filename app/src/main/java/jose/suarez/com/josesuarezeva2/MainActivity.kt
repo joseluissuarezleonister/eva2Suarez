@@ -2,6 +2,7 @@ package jose.suarez.com.josesuarezeva2
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -55,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.botonSincronizar.setOnClickListener {
+            Log.d("MainActivity", "Botón Sincronizar presionado por el usuario")
             viewModel.sincronizarDatos()
         }
     }

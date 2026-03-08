@@ -1,5 +1,6 @@
 package jose.suarez.com.josesuarezeva2.Models
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -30,17 +31,25 @@ class MainViewModel(private val repository: AuditRepository) : ViewModel() {
     // Función de Sincronización con MockAPI
     fun sincronizarDatos() {
         viewModelScope.launch {
+            Log.d("MainViewModel", "Iniciando sincronización...")
             isLoading.value = true // Muestra ProgressBar
 
-            val result = repository.sync() // Llama a la lógica de Retrofit
-
-            result.onSuccess {
-                statusMessage.value = "Sincronización exitosa con la nube"
-            }.onFailure { error ->
-                statusMessage.value = "Error: ${error.message}"
+            try {
+                val result = repository.sync() // Llama a la lógica de Retrofit
+                result.onSuccess {
+                    Log.d("MainViewModel", "Sincronización exitosa devolvió Success")
+                    statusMessage.value = "Sincronización exitosa con la nube"
+                }.onFailure { error ->
+                    Log.e("MainViewModel", "La sincronización devolvió Failure: ${error.message}", error)
+                    statusMessage.value = "Error: ${error.message}"
+                }
+            } catch (e: Exception) {
+                 Log.e("MainViewModel", "Excepción fatal no capturada en sincronizarDatos: ${e.message}", e)
+                 statusMessage.value = "Error crítico: ${e.message}"
+            } finally {
+                 Log.d("MainViewModel", "Finalizando proceso de sincronización, ocultando ProgressBar")
+                 isLoading.value = false // Oculta ProgressBar
             }
-
-            isLoading.value = false // Oculta ProgressBar
         }
     }
 

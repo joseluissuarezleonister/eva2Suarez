@@ -1,5 +1,7 @@
 package jose.suarez.com.josesuarezeva2.Repository
 
+import android.util.Log
+
 import jose.suarez.com.josesuarezeva2.Api.ApiService
 import jose.suarez.com.josesuarezeva2.Dao.TechAuditDao
 import jose.suarez.com.josesuarezeva2.Entities.Equipo
@@ -43,6 +45,7 @@ class AuditRepository (
             Result.success(Unit)
         } catch (e: Exception) {
             // Manejar errores de conexión
+            Log.e("AuditRepository", "Excepción ocurrida durante sync(): ${e.message}", e)
             Result.failure(e)
         }
     }

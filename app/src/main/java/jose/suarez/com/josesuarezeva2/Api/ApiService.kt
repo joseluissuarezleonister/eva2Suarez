@@ -8,6 +8,7 @@ import retrofit2.http.POST
 
 interface ApiService {
     // POST laboratorio
+    @POST("laboratorios")
     suspend fun syncLaboratorio(@Body laboratorio: Laboratorio): Response<Laboratorio>
 
     // POST varios laboratorios
