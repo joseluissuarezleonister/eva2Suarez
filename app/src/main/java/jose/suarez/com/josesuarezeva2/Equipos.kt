@@ -97,16 +97,21 @@ class Equipos : AppCompatActivity() {
 
     private fun mostrarDialogoFormulario(equipoAEditar: Equipo?) {
         val esEditar = equipoAEditar != null
-        val builder = AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
         builder.setTitle(if (esEditar) "Editar Equipo" else "Nuevo Equipo")
 
         val layout = android.widget.LinearLayout(this)
         layout.orientation = android.widget.LinearLayout.VERTICAL
         layout.setPadding(50, 40, 50, 10)
 
+        val colorText = android.graphics.Color.parseColor("#2e2e2e")
+
         // Campo Nombre
         val inputNombre = TextInputEditText(this)
         inputNombre.hint = "Nombre del Equipo"
+        inputNombre.setTextColor(colorText)
+        inputNombre.setHintTextColor(colorText)
+        inputNombre.backgroundTintList = android.content.res.ColorStateList.valueOf(colorText)
         if (esEditar) inputNombre.setText(equipoAEditar?.nombre)
         layout.addView(inputNombre)
 

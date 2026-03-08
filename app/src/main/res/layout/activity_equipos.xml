@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Equipos">
+    tools:context=".Equipos"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/tvTituloEquipos"
@@ -39,6 +40,7 @@
         android:clickable="true"
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="#c9d3f2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

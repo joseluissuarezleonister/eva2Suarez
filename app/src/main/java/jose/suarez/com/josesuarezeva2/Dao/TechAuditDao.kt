@@ -23,6 +23,9 @@ interface TechAuditDao {
     @Query("SELECT  * FROM laboratorio")
     suspend fun getLaboratoriosSync(): List<Laboratorio>
 
+    @Query("SELECT * FROM equipo")
+    suspend fun getEquiposSync(): List<Equipo>
+
     //Auditorio de equipos
     //Crear
     @Insert(onConflict = OnConflictStrategy.REPLACE)

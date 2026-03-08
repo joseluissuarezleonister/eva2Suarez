@@ -28,17 +28,43 @@ class AuditRepository (
         return try {
             // Leer los datos locales de Room
             val labsLocales = dao.getLaboratoriosSync()
+            val equiposLocales = dao.getEquiposSync()
 
-            if (labsLocales.isEmpty()) {
+            if (labsLocales.isEmpty() && equiposLocales.isEmpty()) {
                 return Result.failure(Exception("No hay datos locales para sincronizar"))
             }
 
-            // Enviar los datos a MockAPI mediante Retrofit
-            //  Enviar uno por uno
+            // 1. Limpiar Laboratorios Remotos (MockAPI)
+            val remoteLabsResponse = apiService.getRemoteLaboratorios()
+            if (remoteLabsResponse.isSuccessful) {
+                val remoteLabs = remoteLabsResponse.body() ?: emptyList()
+                remoteLabs.forEach { remoteLab ->
+                    apiService.deleteRemoteLaboratorio(remoteLab.id.toString())
+                }
+            }
+
+            // 2. Limpiar Equipos Remotos (MockAPI)
+            val remoteEquiposResponse = apiService.getRemoteEquipos()
+            if (remoteEquiposResponse.isSuccessful) {
+                val remoteEquipos = remoteEquiposResponse.body() ?: emptyList()
+                remoteEquipos.forEach { remoteEquipo ->
+                    apiService.deleteRemoteEquipo(remoteEquipo.id.toString())
+                }
+            }
+
+            // 3. Enviar los laboratorios locales a MockAPI
             labsLocales.forEach { lab ->
                 val response = apiService.syncLaboratorio(lab)
                 if (!response.isSuccessful) {
                     return Result.failure(Exception("Error al sincronizar el laboratorio: ${lab.nombre}"))
+                }
+            }
+
+            // 4. Enviar los equipos locales a MockAPI
+            equiposLocales.forEach { equipo ->
+                val response = apiService.syncEquipo(equipo)
+                if (!response.isSuccessful) {
+                    return Result.failure(Exception("Error al sincronizar el equipo: ${equipo.nombre}"))
                 }
             }
 

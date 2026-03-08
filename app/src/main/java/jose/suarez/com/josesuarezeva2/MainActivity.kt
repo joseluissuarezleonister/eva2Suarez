@@ -82,19 +82,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun mostrarDialogoCrearLab() {
-        val builder = AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(this, R.style.CustomAlertDialogTheme)
         builder.setTitle("Nuevo Laboratorio")
 
         val layout = android.widget.LinearLayout(this)
         layout.orientation = android.widget.LinearLayout.VERTICAL
         layout.setPadding(50, 40, 50, 10)
 
+        val colorText = android.graphics.Color.parseColor("#2e2e2e")
+
         val inputNombre = TextInputEditText(this)
         inputNombre.hint = "Nombre del Lab (Ej: Redes)"
+        inputNombre.setTextColor(colorText)
+        inputNombre.setHintTextColor(colorText)
+        inputNombre.backgroundTintList = android.content.res.ColorStateList.valueOf(colorText)
         layout.addView(inputNombre)
 
         val inputEdificio = TextInputEditText(this)
         inputEdificio.hint = "Edificio (Ej: Bloque B)"
+        inputEdificio.setTextColor(colorText)
+        inputEdificio.setHintTextColor(colorText)
+        inputEdificio.backgroundTintList = android.content.res.ColorStateList.valueOf(colorText)
         layout.addView(inputEdificio)
 
         builder.setView(layout)

@@ -5,19 +5,22 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/white">
 
     <Button
         android:id="@+id/botonSincronizar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="143dp"
+        android:layout_height="59dp"
         android:text="Sincronizar"
         app:layout_constraintBottom_toTopOf="@+id/listaLabs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintVertical_bias="0.868"
+        android:backgroundTint="#2b5bed"
+        android:textColor="@color/white"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listaLabs"
@@ -31,12 +34,13 @@
         android:id="@+id/botonAgregarLab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
-        android:text="Agregar Laboratorio"
+        android:layout_marginBottom="236dp"
+        android:backgroundTint="#2b5bed"
         android:contentDescription="Agregar Laboratorio"
+        android:text="Agregar Laboratorio"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/barraProgressLab"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
